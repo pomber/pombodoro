@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pombodoro</title>
+    <script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <!--<link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">-->
+    <link rel="import" href="../bower_components/paper-input/paper-input.html">
+    <link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+    <link rel="import" href="../bower_components/paper-item/paper-item.html">
+    <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+    <link rel="import" href="../bower_components/paper-button/paper-button.html">
+</head>
+
+<body>
+    <h3>Watcha doin'?</h3>
+    <paper-dropdown-menu label="Doing?">
+        <paper-listbox class="dropdown-content">
+            <paper-item>Coding</paper-item>
+            <paper-item>Reading</paper-item>
+            <paper-item>Learning</paper-item>
+            <paper-item>Nothing</paper-item>
+            <paper-item>Meditating</paper-item>
+            <paper-item>Sleeping</paper-item>
+            <paper-item>Eating</paper-item>
+            <paper-item>Other</paper-item>
+        </paper-listbox>
+    </paper-dropdown-menu>
+    <paper-input label="What?"></paper-input>
+    <paper-button raised>Log</paper-button>
+    <!--<script src="script.js"></script>-->
+</body>
+
+</html>
