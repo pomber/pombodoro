@@ -13,37 +13,33 @@
     <link rel="import" href="../bower_components/paper-item/paper-item.html">
     <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
     <link rel="import" href="../bower_components/paper-button/paper-button.html">
-    
+
     <link rel="import" href="../bower_components/firebase-element/firebase-collection.html">
     <link rel="import" href="../bower_components/firebase-element/firebase-document.html">
 </head>
 
 <body>
-    
-     <template is="dom-bind">
-        <firebase-collection
-          location="https://pombodoro.firebaseio.com/acts"
-          data="{{acts}}"></firebase-collection>
-        <template is="dom-repeat" items="[[acts]]" as="act">
-          <!--<h4>[[act.__firebaseKey__]]</h4>-->
-          <span>[[act.value]]</span>
-        </template>
-      </template>
-    
-    
+
     <h3>Watcha doin'?</h3>
-    <paper-dropdown-menu label="Doing?">
-        <paper-listbox class="dropdown-content">
-            <paper-item>Coding</paper-item>
-            <paper-item>Reading</paper-item>
-            <paper-item>Learning</paper-item>
-            <paper-item>Nothing</paper-item>
-            <paper-item>Meditating</paper-item>
-            <paper-item>Sleeping</paper-item>
-            <paper-item>Eating</paper-item>
-            <paper-item>Other</paper-item>
-        </paper-listbox>
-    </paper-dropdown-menu>
+
+    <template is="dom-bind">
+        <firebase-collection 
+            location="https://pombodoro.firebaseio.com/acts" 
+            data="{{acts}}">
+        </firebase-collection>
+
+        <paper-dropdown-menu label="Doing?">
+            <paper-listbox class="dropdown-content">
+                <template is="dom-repeat" items="[[acts]]" as="act">
+                    <!--<h4>[[act.__firebaseKey__]]</h4>-->
+                    <paper-item>[[act.value]]</paper-item>
+                </template>
+            </paper-listbox>
+        </paper-dropdown-menu>
+
+    </template>
+
+
     <paper-input label="What?"></paper-input>
     <paper-button raised>Log</paper-button>
     <!--<script src="script.js"></script>-->
