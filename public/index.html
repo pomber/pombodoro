@@ -22,12 +22,11 @@
     
      <template is="dom-bind">
         <firebase-collection
-          order-by-child="height"
-          location="https://dinosaur-facts.firebaseio.com/dinosaurs"
-          data="{{dinosaurs}}"></firebase-collection>
-        <template is="dom-repeat" items="[[dinosaurs]]" as="dinosaur">
-          <h4>[[dinosaur.__firebaseKey__]]</h4>
-          <span>Height: </span><span>[[dinosaur.height]]</span><span>m</span>
+          location="https://pombodoro.firebaseio.com/acts"
+          data="{{acts}}"></firebase-collection>
+        <template is="dom-repeat" items="[[acts]]" as="act">
+          <!--<h4>[[act.__firebaseKey__]]</h4>-->
+          <span>[[act.value]]</span>
         </template>
       </template>
     
