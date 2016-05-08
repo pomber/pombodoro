@@ -13,9 +13,25 @@
     <link rel="import" href="../bower_components/paper-item/paper-item.html">
     <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
     <link rel="import" href="../bower_components/paper-button/paper-button.html">
+    
+    <link rel="import" href="../bower_components/firebase-element/firebase-collection.html">
+    <link rel="import" href="../bower_components/firebase-element/firebase-document.html">
 </head>
 
 <body>
+    
+     <template is="dom-bind">
+        <firebase-collection
+          order-by-child="height"
+          location="https://dinosaur-facts.firebaseio.com/dinosaurs"
+          data="{{dinosaurs}}"></firebase-collection>
+        <template is="dom-repeat" items="[[dinosaurs]]" as="dinosaur">
+          <h4>[[dinosaur.__firebaseKey__]]</h4>
+          <span>Height: </span><span>[[dinosaur.height]]</span><span>m</span>
+        </template>
+      </template>
+    
+    
     <h3>Watcha doin'?</h3>
     <paper-dropdown-menu label="Doing?">
         <paper-listbox class="dropdown-content">
