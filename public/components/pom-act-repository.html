@@ -1,0 +1,23 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/firebase-element/firebase-collection.html">
+
+<dom-module id="pom-act-repository">
+
+    <template>               
+        <firebase-collection id="collection" location="https://pombodoro.firebaseio.com/acts" data="{{acts}}">
+        </firebase-collection>
+    </template>
+
+    <script>
+        Polymer({
+            is: "pom-act-repository",
+            properties: {
+                acts: {
+                    type: Array,
+                    notify: true
+                }
+            }
+        });
+    </script>
+    
+</dom-module>

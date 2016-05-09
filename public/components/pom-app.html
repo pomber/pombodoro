@@ -1,0 +1,18 @@
+<link rel="import" href="pom-act-repository.html">
+<link rel="import" href="pom-act-selector.html">
+
+    
+<dom-module id="pom-app">
+
+    <template>        
+        <pom-act-repository acts="{{acts}}"></pom-act-repository>    
+        <pom-act-selector acts="[[acts]]"></pom-act-selector>
+    </template>
+
+    <script>
+        Polymer({
+            is: "pom-app"
+        });
+    </script>
+    
+</dom-module>
