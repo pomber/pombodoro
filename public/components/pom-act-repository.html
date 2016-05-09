@@ -15,7 +15,17 @@
                 acts: {
                     type: Array,
                     notify: true
+                },
+                repository: {
+                    type: Object,
+                    notify: true,
+                    value: function() {
+                        return this;
+                    }
                 }
+            },
+            addAct: function(act) {
+                this.$.collection.add(act);
             }
         });
     </script>
