@@ -4,19 +4,19 @@
 
 <dom-module id="pom-act-logger">
 
-    <template>        
-        <paper-button raised on-tap="addValue">Add</paper-button>
+    <template>
+        <paper-button raised on-tap="log">Log</paper-button>
     </template>
 
     <script>
         Polymer({
             is: "pom-act-logger",
             properties: {
-                selectedAct: Object
+                selected: Object
             },
             log: function() {
-                if (selectedAct) {
-                    
+                if (this.selected) {
+                    alert(this.selected);
                 }
             }
         });

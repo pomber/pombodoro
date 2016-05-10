@@ -7,7 +7,7 @@
 
     <template>        
         <h3>Watcha doin'?</h3>
-        <paper-dropdown-menu label="Doing?">
+        <paper-dropdown-menu label="Doing?" value="{{selected}}">
             <paper-listbox class="dropdown-content">
                 <!--<h4>[[act.__firebaseKey__]]</h4>-->
                 <template is="dom-repeat" items="[[acts]]" as="act">                    
@@ -23,6 +23,10 @@
             properties: {
                 acts: {
                     type: Array
+                },
+                selected : {
+                    type: Object,
+                    notify: true
                 }
             }
         });

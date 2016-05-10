@@ -1,14 +1,16 @@
 <link rel="import" href="pom-act-repository.html">
 <link rel="import" href="pom-act-selector.html">
 <link rel="import" href="pom-act-creator.html">
+<link rel="import" href="pom-act-logger.html">
 
     
 <dom-module id="pom-app">
 
     <template>        
         <pom-act-repository acts="{{acts}}" repository="{{repository}}"></pom-act-repository>    
-        <pom-act-selector acts="[[acts]]"></pom-act-selector>    
+        <pom-act-selector acts="[[acts]]" selected="{{act}}"></pom-act-selector>    
         <pom-act-creator repository="[[repository]]"></pom-act-creator>
+        <pom-act-logger selected="[[act]]"></pom-act-logger>
     </template>
 
     <script>
