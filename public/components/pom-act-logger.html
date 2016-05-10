@@ -1,0 +1,25 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+
+
+<dom-module id="pom-act-logger">
+
+    <template>        
+        <paper-button raised on-tap="addValue">Add</paper-button>
+    </template>
+
+    <script>
+        Polymer({
+            is: "pom-act-logger",
+            properties: {
+                selectedAct: Object
+            },
+            log: function() {
+                if (selectedAct) {
+                    
+                }
+            }
+        });
+    </script>
+    
+</dom-module>
