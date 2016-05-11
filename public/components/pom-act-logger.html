@@ -5,6 +5,8 @@
 <dom-module id="pom-act-logger">
 
     <template>
+        <firebase-collection id="collection" location="https://pombodoro.firebaseio.com/log" data="{{acts}}">
+        </firebase-collection>
         <paper-button raised on-tap="log">Log</paper-button>
     </template>
 
@@ -15,8 +17,14 @@
                 selected: Object
             },
             log: function() {
-                if (this.selected) {
-                    alert(this.selected);
+                if (this.selected) {    
+                    var log = {
+                        ts: new Date().getTime(),
+                        val: this.selected
+                    };
+                    // debugger;
+                    // alert(log);
+                    this.$.collection.add(log);
                 }
             }
         });
