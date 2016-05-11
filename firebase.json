@@ -1,0 +1,10 @@
+{
+  "firebase": "pombodoro",
+  "public": "public",
+  "ignore": [
+    "firebase.json",
+    "bower.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
