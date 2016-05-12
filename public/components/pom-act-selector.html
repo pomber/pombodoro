@@ -2,49 +2,33 @@
 <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
-<link rel="import" href="../bower_components/iron-list/iron-list.html">
-<link rel="import" href="../bower_components/app-layout/app-layout.html">
+
+<link rel="import" href="../bower_components/paper-header-panel/paper-header-panel.html">
+<link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
 
 <dom-module id="pom-act-selector">
 
-    <template>        
-        <app-header style="height: 96px;" condenses fixed>
-            <app-toolbar style="height: 64px;">
-                <div title>App name</div>
-            </app-toolbar>
-        </app-header>
-        
-        <iron-list items="[[acts]]" as="act">            
-            <template>
-                <div>
-                    <div>
-                        [[act.value]]
-                    </div>
-                    <div>
-                        [[act.value]]
-                    </div>
-                    <div>
-                        [[act.value]]
-                    </div>
-                    <div>
-                        [[act.value]]
-                    </div>
-                    <div>
-                        [[act.value]]
-                    </div>
-                </div>
-            </template>
-    </iron-list>
+    <template>
+        <paper-header-panel mode="waterfall-tall">
+            <paper-toolbar><div class="title">Title</div></paper-toolbar>
+            <div class="content fit">content fits 100% below the header</div>
+        </paper-header-panel>
 
-    <h3>Watcha doin'?</h3>
-    <paper-dropdown-menu label="Doing?" value="{{selected}}">
-        <paper-listbox class="dropdown-content">
-            <!--<h4>[[act.__firebaseKey__]]</h4>-->
-            <template is="dom-repeat" items="[[acts]]" as="act">                    
+        <paper-listbox>
+            <template is="dom-repeat" items="[[acts]]" as="act">
+                <paper-item>[[act.value]]</paper-item>
+                <br><br>
+            </template>
+        </paper-listbox>
+
+        <h3>Watcha doin'?</h3>
+        <paper-dropdown-menu label="Doing?" value="{{selected}}">
+            <paper-listbox class="dropdown-content">
+                <template is="dom-repeat" items="[[acts]]" as="act">
                     <paper-item>[[act.value]]</paper-item>
                 </template>
-        </paper-listbox>
-    </paper-dropdown-menu>
+            </paper-listbox>
+        </paper-dropdown-menu>
 
     </template>
 
