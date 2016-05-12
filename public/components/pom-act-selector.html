@@ -3,10 +3,14 @@
 <link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../bower_components/firebase-element/firebase-collection.html">
 
 <dom-module id="pom-act-selector">
 
     <template>
+        
+        <firebase-collection id="collection" location="https://pombodoro.firebaseio.com/log">
+        </firebase-collection>
         
         <paper-toolbar>
             <div class="title">Now: {{selected}}</div>
@@ -19,15 +23,6 @@
                 </paper-item>
             </template>
         </paper-listbox>
-
-        <h3>Watcha doin'?</h3>
-        <paper-dropdown-menu label="Doing?" value="{{selected}}">
-            <paper-listbox class="dropdown-content">
-                <template is="dom-repeat" items="[[acts]]" as="act">
-                    <paper-item>[[act.value]]</paper-item>
-                </template>
-            </paper-listbox>
-        </paper-dropdown-menu>
 
     </template>
 
@@ -44,7 +39,19 @@
                 }
             },
             _select: function(e) {
-                this.selected = e.model.act.value;                
+                console.log("select");
+                this.selected = e.model.act.value;  
+                this._log();              
+            },
+            _log: function() {
+                console.log("log");
+                if (this.selected) {    
+                    var log = {
+                        ts: new Date().getTime(),
+                        val: this.selected
+                    };
+                    this.$.collection.add(log);
+                }
             }
         });
     </script>
