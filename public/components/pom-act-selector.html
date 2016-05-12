@@ -2,22 +2,21 @@
 <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
-
-<link rel="import" href="../bower_components/paper-header-panel/paper-header-panel.html">
 <link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
 
 <dom-module id="pom-act-selector">
 
     <template>
-        <paper-header-panel mode="waterfall-tall">
-            <paper-toolbar><div class="title">Title</div></paper-toolbar>
-            <div class="content fit">content fits 100% below the header</div>
-        </paper-header-panel>
+        
+        <paper-toolbar>
+            <div class="title">Now: {{selected}}</div>
+        </paper-toolbar>
 
         <paper-listbox>
             <template is="dom-repeat" items="[[acts]]" as="act">
-                <paper-item>[[act.value]]</paper-item>
-                <br><br>
+                <paper-item on-tap="_select">
+                    [[act.value]]
+                </paper-item>
             </template>
         </paper-listbox>
 
@@ -43,6 +42,9 @@
                     type: Object,
                     notify: true
                 }
+            },
+            _select: function(e) {
+                this.selected = e.model.act.value;                
             }
         });
     </script>
