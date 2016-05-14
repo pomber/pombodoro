@@ -2,8 +2,10 @@
 <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-item/paper-item-body.html">
 <link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../bower_components/firebase-element/firebase-collection.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 
 <dom-module id="pom-act-selector">
 
@@ -22,6 +24,13 @@
                     [[act.value]]
                 </paper-item>
             </template>
+            <paper-item on-tap="_add" raised>                
+                <paper-item-body>
+                    <div>Add new ...</div>
+                </paper-item-body>
+                
+                <iron-icon icon="add"></iron-icon>
+            </paper-item>
         </paper-listbox>
 
     </template>
@@ -30,9 +39,8 @@
         Polymer({
             is: "pom-act-selector",
             properties: {
-                acts: {
-                    type: Array
-                },
+                repository: Object,
+                acts: Array,
                 selected : {
                     type: Object,
                     notify: true
@@ -52,6 +60,9 @@
                     };
                     this.$.collection.add(log);
                 }
+            },
+            _add: function() {
+                alert("Addd");
             }
         });
     </script>
