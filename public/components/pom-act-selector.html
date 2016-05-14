@@ -6,11 +6,19 @@
 <link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../bower_components/firebase-element/firebase-collection.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/paper-styles/typography.html">
 
 <dom-module id="pom-act-selector">
 
     <template>
         
+
+        <style>
+            .act {
+                @apply(--paper-font-headline);
+            }
+        </style>
+    
         <firebase-collection id="collection" location="https://pombodoro.firebaseio.com/log">
         </firebase-collection>
         
@@ -20,7 +28,7 @@
 
         <paper-listbox>
             <template is="dom-repeat" items="[[acts]]" as="act">
-                <paper-item on-tap="_select">
+                <paper-item on-tap="_select" class="act">
                     [[act.value]]
                 </paper-item>
             </template>
