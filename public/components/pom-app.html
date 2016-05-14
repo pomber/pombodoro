@@ -1,11 +1,10 @@
 <link rel="import" href="pom-act-repository.html">
 <link rel="import" href="pom-act-selector.html">
-<link rel="import" href="pom-act-creator.html">
-    
+
 <dom-module id="pom-app">
 
-    <template>        
-        <pom-act-repository acts="{{acts}}" repository="{{repository}}"></pom-act-repository>    
+    <template>
+        <pom-act-repository acts="{{acts}}" repository="{{repository}}"></pom-act-repository>
         <pom-act-selector acts="[[acts]]" repository="[[repository]]"></pom-act-selector>
     </template>
 
@@ -14,5 +13,5 @@
             is: "pom-app"
         });
     </script>
-    
+
 </dom-module>
