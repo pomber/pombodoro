@@ -1,13 +1,15 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
-
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 
 <dom-module id="pom-act-creator">
 
     <template>        
         <paper-input label="New value" value="{{newValue}}"></paper-input>
         <paper-button raised on-tap="addValue">Add</paper-button>
+        <paper-fab icon="add" style="position: absolute; bottom: 100px; right: 100px"></paper-fab >
     </template>
 
     <script>
