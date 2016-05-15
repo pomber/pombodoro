@@ -49,7 +49,7 @@
                 <paper-icon-button icon="menu"></paper-icon-button>
                 <div class="title">Now: {{selectedAct}}</div>
                 <div>{{time}}</div>
-                <paper-icon-button icon="check"></paper-icon-button>
+                <paper-icon-button icon="check" on-tap="_actDone"></paper-icon-button>
                 <paper-icon-button icon="clear"></paper-icon-button>
             </paper-toolbar>
 
@@ -121,6 +121,10 @@
                     this.repository.addAct(this._newValue);
                     this._newValue = "";
                 }       
+            },
+            _actDone: function() {
+                //TODO this shouldn't be hardcoded here
+                this._log("Nothing");
             }
         });
     </script>
