@@ -1,0 +1,67 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<!--
+A stopwatch.
+Example:
+    <rpr-stopwatch></rpr-stopwatch>
+Example:
+    <rpr-stopwatch></rpr-stopwatch
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<script>
+    Polymer({
+      is: 'rpr-stopwatch',
+      properties: {
+        /**
+         * Timestamp defining when the stopwatch started or should start 
+         * For example `new Date().getTime()`
+         */
+        starttime: {
+            type: Number,            
+        },
+        /**
+         * Number of elapsed secons since `timestamp`
+         */
+        elapsedSeconds: {
+            type: Number,
+            notify: true
+        },
+        /**
+         * Time elapsed since `timestamp`
+         */
+        elapsedTime: {
+            type: String,
+            notify: true
+        }       
+      },
+      
+      attached: function() {
+        this._update();
+        setInterval(this._update.bind(this), 990);
+      },
+      
+      _update: function() {
+          var current = new Date().getTime();
+          var diff = current - this.starttime;
+          this.elapsedSeconds = ~~(diff / 1000);
+          
+          this.elapsedTime = this._toHHMMSS();
+        //   this.async(this._update, 990);
+      },
+      _toHHMMSS: function () {
+        var sec_num = this.elapsedSeconds;
+        var hours   = Math.floor(sec_num / 3600);
+        var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+        var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+        if (hours   < 10) {hours   = "0"+hours;}
+        if (minutes < 10) {minutes = "0"+minutes;}
+        if (seconds < 10) {seconds = "0"+seconds;}
+        return hours+':'+minutes+':'+seconds;
+      }
+    });
+
+</script>
+</dom-module>

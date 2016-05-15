@@ -10,6 +10,7 @@
 <link rel="import" href="../bower_components/paper-styles/typography.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-header-panel/paper-header-panel.html">
+<link rel="import" href="rpr-stopwatch.html">
 
 <dom-module id="pom-act-selector">
 
@@ -40,12 +41,14 @@
 
         <firebase-collection id="collection" location="https://pombodoro.firebaseio.com/log" limit-to-last="1" log="true" data="{{logs}}">
         </firebase-collection>
-
-        <paper-header-panel>
+        
+        <paper-header-panel mode="waterfall-tall">
 
             <paper-toolbar>
+                <rpr-stopwatch starttime="[[selectedTime]]" elapsed-time="{{time}}"></rpr-stopwatch>
                 <paper-icon-button icon="menu"></paper-icon-button>
-                <div class="title">Now: {{_computeSelected(logs.*)}}</div>
+                <div class="title">Now: {{selectedAct}}</div>
+                <div>{{time}}</div>
                 <paper-icon-button icon="check"></paper-icon-button>
                 <paper-icon-button icon="clear"></paper-icon-button>
             </paper-toolbar>
@@ -83,11 +86,18 @@
             is: "pom-act-selector",
             properties: {
                 repository: Object,
-                acts: Array
-            },
-            _computeSelected: function(changeRecord) {
+                acts: Array,
+                selectedAct: String,
+                selectedTime: String
+            }, 
+            observers: [
+                '_setSelected(logs.*)'
+            ],
+            
+            _setSelected: function(changeRecord) {
                 if (changeRecord.base && changeRecord.base.length) {                    
-                    return changeRecord.base[0].val;
+                    this.selectedAct = changeRecord.base[0].val;                    
+                    this.selectedTime = changeRecord.base[0].ts;
                 }
             },
             _select: function(e) { 
