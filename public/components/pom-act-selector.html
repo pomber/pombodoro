@@ -53,8 +53,9 @@
 
         <paper-dialog id="dialog" on-iron-overlay-closed="_onDialogClose">           
             <h2>New Activity</h2> 
-            <paper-input placeholder="Moon Dancing" value="{{_newValue}}"></paper-input>
+            <paper-input placeholder="Moon Dancing" value="{{_newValue}}" autocapitalize="words" type="text" autofocus></paper-input>
             <div class="buttons">
+                <paper-button dialog-dismiss>Cancel</paper-button>
                 <paper-button dialog-confirm>Add</paper-button>
             </div>
         </paper-dialog>
