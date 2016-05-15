@@ -31,7 +31,7 @@
 
         <paper-toolbar>
             <!--<paper-icon-button icon="menu"></paper-icon-button>-->
-            <div class="title">Now: {{_computeSelected(logs.*, 0)}}</div>
+            <div class="title">Now: {{_computeSelected(logs.*)}}</div>
             <paper-icon-button icon="check"></paper-icon-button>
             <paper-icon-button icon="clear"></paper-icon-button>
         </paper-toolbar>
@@ -68,7 +68,7 @@
                 repository: Object,
                 acts: Array
             },
-            _computeSelected: function(changeRecord, index) {
+            _computeSelected: function(changeRecord) {
                 if (changeRecord.base && changeRecord.base.length) {                    
                     return changeRecord.base[0].val;
                 }
