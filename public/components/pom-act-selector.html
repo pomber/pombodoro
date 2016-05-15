@@ -9,6 +9,7 @@
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/paper-styles/typography.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-header-panel/paper-header-panel.html">
 
 <dom-module id="pom-act-selector">
 
@@ -19,44 +20,55 @@
             .act {
                 @apply(--paper-font-headline);
             }
+            
             .buttons > paper-button {
                 /*background-color: var(--google-grey-300);*/
                 padding: 15px;
             }
+                        
+            :host {
+                /*for paper-header-panel to work*/
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
         </style>
 
-        <firebase-collection 
-            id="collection" 
-            location="https://pombodoro.firebaseio.com/log"
-            limit-to-last="1" 
-            log="true"
-            data="{{logs}}">
+        <firebase-collection id="collection" location="https://pombodoro.firebaseio.com/log" limit-to-last="1" log="true" data="{{logs}}">
         </firebase-collection>
 
-        <paper-toolbar>
-            <!--<paper-icon-button icon="menu"></paper-icon-button>-->
-            <div class="title">Now: {{_computeSelected(logs.*)}}</div>
-            <paper-icon-button icon="check"></paper-icon-button>
-            <paper-icon-button icon="clear"></paper-icon-button>
-        </paper-toolbar>
+        <paper-header-panel>
 
-        <paper-listbox>
-            <template is="dom-repeat" items="[[acts]]" as="act">
-                <paper-item on-tap="_select" class="act">
-                    [[act.value]]
+            <paper-toolbar>
+                <paper-icon-button icon="menu"></paper-icon-button>
+                <div class="title">Now: {{_computeSelected(logs.*)}}</div>
+                <paper-icon-button icon="check"></paper-icon-button>
+                <paper-icon-button icon="clear"></paper-icon-button>
+            </paper-toolbar>
+
+            <paper-listbox>
+                <template is="dom-repeat" items="[[acts]]" as="act">
+                    <paper-item on-tap="_select" class="act">
+                        [[act.value]]
+                    </paper-item>
+                </template>
+                <paper-item on-tap="_add" raised>
+                    <paper-item-body>
+                        <div>Add new ...</div>
+                    </paper-item-body>
+
+                    <iron-icon icon="add"></iron-icon>
                 </paper-item>
-            </template>
-            <paper-item on-tap="_add" raised>
-                <paper-item-body>
-                    <div>Add new ...</div>
-                </paper-item-body>
+            </paper-listbox>
 
-                <iron-icon icon="add"></iron-icon>
-            </paper-item>
-        </paper-listbox>
+        </paper-header-panel>
 
-        <paper-dialog id="dialog" on-iron-overlay-closed="_onDialogClose">           
-            <h2>New Activity</h2> 
+        <paper-dialog id="dialog" on-iron-overlay-closed="_onDialogClose">
+            <h2>New Activity</h2>
             <paper-input placeholder="Moon Dancing" value="{{_newValue}}" autocapitalize="words" type="text" autofocus></paper-input>
             <div class="buttons">
                 <paper-button dialog-dismiss>Cancel</paper-button>
