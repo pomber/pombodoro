@@ -39,7 +39,7 @@
             }
         </style>
 
-        <firebase-collection id="collection" location="https://pombodoro.firebaseio.com/log" limit-to-last="1" log="true" data="{{logs}}">
+        <firebase-collection id="collection" location="https://pombodoro.firebaseio.com/log" limit-to-last="2" log="true" data="{{logs}}">
         </firebase-collection>
         
         <paper-header-panel mode="waterfall-tall">
@@ -50,7 +50,7 @@
                 <div class="title">Now: {{selectedAct}}</div>
                 <div>{{time}}</div>
                 <paper-icon-button icon="check" on-tap="_actDone"></paper-icon-button>
-                <paper-icon-button icon="clear"></paper-icon-button>
+                <paper-icon-button icon="clear" on-tap="_actRemove"></paper-icon-button>
             </paper-toolbar>
 
             <paper-listbox>
@@ -95,9 +95,9 @@
             ],
             
             _setSelected: function(changeRecord) {
-                if (changeRecord.base && changeRecord.base.length) {                    
-                    this.selectedAct = changeRecord.base[0].val;                    
-                    this.selectedTime = changeRecord.base[0].ts;
+                if (changeRecord.base && changeRecord.base.length > 1) {                    
+                    this.selectedAct = changeRecord.base[1].val;                    
+                    this.selectedTime = changeRecord.base[1].ts;
                 }
             },
             _select: function(e) { 
@@ -125,6 +125,22 @@
             _actDone: function() {
                 //TODO this shouldn't be hardcoded here
                 this._log("Nothing");
+            },
+            _actRemove: function() {
+                var log = this.logs[1];
+                var prev = this.logs[0];
+                //TODO this shouldn't be hardcoded here
+                if (log.val !== "Nothing") {
+                    this.$.collection.remove(log);                    
+                }
+                //TODO this shouldn't be hardcoded here
+                if (prev.val !== "Nothing") {
+                    var edit = {
+                        ts: log.ts,
+                        val: "Nothing"
+                    };
+                    this.$.collection.add(edit);                    
+                }                
             }
         });
     </script>
