@@ -21,12 +21,17 @@
             }
         </style>
 
-        <firebase-collection id="collection" location="https://pombodoro.firebaseio.com/log">
+        <firebase-collection 
+            id="collection" 
+            location="https://pombodoro.firebaseio.com/log"
+            limit-to-last="1" 
+            log="true"
+            data="{{logs}}">
         </firebase-collection>
 
         <paper-toolbar>
             <!--<paper-icon-button icon="menu"></paper-icon-button>-->
-            <div class="title">Now: {{selected}}</div>
+            <div class="title">Now: {{_computeSelected(logs.*, 0)}}</div>
             <paper-icon-button icon="check"></paper-icon-button>
             <paper-icon-button icon="clear"></paper-icon-button>
         </paper-toolbar>
@@ -61,21 +66,21 @@
             is: "pom-act-selector",
             properties: {
                 repository: Object,
-                acts: Array,
-                selected : {
-                    type: Object,
-                    notify: true
+                acts: Array
+            },
+            _computeSelected: function(changeRecord, index) {
+                if (changeRecord.base && changeRecord.base.length) {                    
+                    return changeRecord.base[0].val;
                 }
             },
-            _select: function(e) {
-                this.selected = e.model.act.value;  
-                this._log();              
+            _select: function(e) { 
+                this._log(e.model.act.value);              
             },
-            _log: function() {
-                if (this.selected) {    
+            _log: function(act) {
+                if (act) {    
                     var log = {
                         ts: new Date().getTime(),
-                        val: this.selected
+                        val: act
                     };
                     this.$.collection.add(log);
                 }
