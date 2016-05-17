@@ -124,7 +124,9 @@
             },
             _actDone: function() {
                 //TODO this shouldn't be hardcoded here
-                this._log("Nothing");
+                if (this.logs[1].val !== "Nothing") {
+                    this._log("Nothing");
+                }
             },
             _actRemove: function() {
                 var log = this.logs[1];
