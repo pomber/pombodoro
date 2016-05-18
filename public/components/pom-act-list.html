@@ -1,0 +1,50 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html"
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-item/paper-item-body.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/paper-styles/typography.html">
+
+<dom-module id="pom-act-list">
+
+    <template>
+
+        <style>
+            .act {
+                @apply(--paper-font-headline);
+            }            
+        </style>
+
+        <paper-listbox>
+            <template is="dom-repeat" items="[[acts]]" as="act">
+                <paper-item on-tap="_select" class="act">
+                    [[act.value]]
+                </paper-item>
+            </template>
+            <paper-item on-tap="_add" raised>
+                <paper-item-body>
+                    <div>Add new ...</div>
+                </paper-item-body>
+                <iron-icon icon="add"></iron-icon>
+            </paper-item>
+        </paper-listbox>
+
+    </template>
+
+    <script>
+        Polymer({
+            is: "pom-act-list",
+            properties: {
+                acts: Array,
+                selected: Object
+            }, 
+            _select: function(e) { 
+                this.selected = e.model.act.value;              
+            },
+            _add: function() {                
+                console.log("Add");
+            }
+        });
+    </script>
+
+</dom-module>
